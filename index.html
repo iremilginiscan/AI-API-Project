@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Sorgu Dönüştürücü (Demo)</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; max-width: 600px; margin: auto; background-color: #f5f5f5; }
+    input, button { width: 100%; padding: 12px; font-size: 16px; margin-top: 10px; }
+    #output { margin-top: 20px; white-space: pre-wrap; background: #fff; padding: 15px; border-radius: 6px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>🧠 AI Tabanlı SQL Sorgu Oluşturucu (Demo)</h1>
+  <input id="prompt" placeholder="Doğal dilde sorgu yaz..." />
+  <button onclick="send()">Gönder</button>
+  <div id="output">Cevap burada görünecek</div>
+
+  <script>
+    function send() {
+      const prompt = document.getElementById('prompt').value;
+      const output = document.getElementById('output');
+
+      // Sahte demo cevabı
+      const sampleResponses = {
+        "en çok sipariş veren müşteri": "SELECT customer_id, COUNT(*) as order_count FROM orders GROUP BY customer_id ORDER BY order_count DESC LIMIT 1;",
+        "geçen ayki satışlar": "SELECT SUM(total_price) FROM sales WHERE sale_date >= DATE('now', '-1 month');",
+        "en popüler ürün": "SELECT product_name FROM products ORDER BY sales_count DESC LIMIT 1;"
+      };
+
+      const response = sampleResponses[prompt.toLowerCase()] || "SELECT * FROM your_table WHERE condition = 'example';";
+      output.innerText = response;
+    }
+  </script>
+</body>
+</html>
